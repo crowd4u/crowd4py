@@ -19,6 +19,6 @@ setup(
     url='https://github.com/SShayashi',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
-    install_requires=[''],
+    install_requires=['requests', 'lxml']
 )
 
