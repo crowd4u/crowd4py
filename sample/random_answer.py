@@ -2,11 +2,11 @@
 import crowd4py
 
 user_info = {
-    "requester": 00,
-    "from_app": 1,
-    "_machine_language": "ja_JP",
-    "group_id": 00,
-    "_user_token": ""}
+    'requester': 00,
+    'from_app': 1,
+    '_machine_language': 'ja_JP',
+    'group_id': 00,
+    '_user_token': ''}
 
 project_name = ''
 relation_name = ''
