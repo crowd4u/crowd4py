@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import crowd4py
+import threading
 
 user_info = {
     'requester': 00,
@@ -10,6 +11,7 @@ user_info = {
 
 project_name = ''
 relation_name = ''
+training_data = []
 
 
 def example_predict(data):
@@ -21,9 +23,19 @@ def example_predict(data):
     ans_data = data
     return ans_data
 
-if __name__ == "__main__":
+
+def poring_training_data(api):
+    pass
+
+
+if __name__ == '__main__':
     api = crowd4py.API(user_info=user_info, project_name=project_name, relation_name=relation_name)
     data = api.get_task()
+
+    # マルチスレッドでポーリング
+    t = threading.Thread(target=poring_training_data(api))
+    t.daemon = True
+    t.start()
 
     ans_data = example_predict(data)
 
