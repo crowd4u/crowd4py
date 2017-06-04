@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <post_url>//oahu.slis.tsukuba.ac.jp/event/CompTest?_task_id=5146153</post_url>
+    <position></position>
+    <diff></diff>
+    <message>oahu:一時的なネットワークの問題でタスクが表示されません．</message>
+    <about>about it</about>
+    <uri>url about the task</uri>
+    <question>question text </question>
+    <answer>
+        <text></text>
+        <parameters>
+            <parameter>
+                <name>_FACT1___tid</name>
+                <value>999</value>
+            </parameter>
+            <parameter>
+                <name>_FACT1_relation_name</name>
+                <value>Test</value>
+            </parameter>
+        </parameters>
+    </answer>
+</root>
