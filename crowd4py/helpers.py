@@ -6,7 +6,7 @@ def attach_prefix(string):
     prefix = '_FACT1___'
     pattern = '^_FACT1___'
     match = re.search(pattern=pattern, string=string)
-    return prefix + string if match else string
+    return string if match else prefix + string
 
 
 def detach_prefix(string):
