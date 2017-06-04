@@ -19,6 +19,8 @@ def example_predict(data):
     :param data:
     :return: ans_data
     """
+    data['is_same'] = "True"
+    data['_input_value_names'] = ""
     ans_data = data
     return ans_data
 
@@ -26,6 +28,14 @@ def example_predict(data):
 def poring_training_data(api):
     pass
 
+
+def input_empty_at_none(ans_data):
+    data = []
+    for d in ans_data.items():
+        if d[1] is None:
+            d = (d[0], '')
+        data.append(d)
+    return dict(data)
 
 if __name__ == '__main__':
     api = crowd4py.API(user_info=user_info, project_name=project_name, relation_name=relation_name)
@@ -37,8 +47,10 @@ if __name__ == '__main__':
     # t.start()
 
     ans_data = example_predict(task.data)
-
+    # post_data = input_empty_at_none(ans_data)
     if ans_data is None:
         api.request_answer(task.data['tid'])
+        print("requested task answer ")
     else:
         api.post_answer(task.post_url, ans_data)
+        print("post answer ")
