@@ -37,7 +37,6 @@ class API:
     def get_task(self, debug=False) -> Task:
         task_url = self.get_task_url()
         task_url = task_url.replace('https://', 'http://') if debug else task_url
-        print(task_url)
         r = requests.get(task_url, auth=(USERID, PASSWORD))
         self.cookies = r.cookies
         task = Task(xml_text=r.content)
@@ -57,7 +56,6 @@ class API:
         keys = ans_data.keys()
         attached_keys = [helpers.attach_prefix(k) for k in keys]
         post_data = dict(zip(attached_keys, values))
-        print(post_data)
         r = requests.post(post_url, data=post_data, auth=(USERID, PASSWORD), cookies=self.cookies)
         return r.status_code
 
