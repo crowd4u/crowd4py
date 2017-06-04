@@ -14,7 +14,6 @@ class Task:
         self.post_url = self.get_post_url(etroot=etroot)
 
     def __repr__(self):
-        print("Task object")
         return self.data
 
     @staticmethod
