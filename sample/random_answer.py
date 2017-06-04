@@ -10,7 +10,7 @@ user_info = {
     '_user_token': ''}
 
 project_name = 'CompTestV2'
-relation_name = '_Task_Bibrecord_IdentificationTask'
+relation_name = 'Results'
 training_data = []
 
 
@@ -29,18 +29,11 @@ def poring_training_data(api):
     pass
 
 
-def input_empty_at_none(ans_data):
-    data = []
-    for d in ans_data.items():
-        if d[1] is None:
-            d = (d[0], '')
-        data.append(d)
-    return dict(data)
-
-
 if __name__ == '__main__':
     api = crowd4py.API(user_info=user_info, project_name=project_name, relation_name=relation_name)
     task = api.get_task(debug=True)
+
+    json = api.relation_data()
 
     # マルチスレッドでポーリング
     # t = threading.Thread(target=poring_training_data(api))
