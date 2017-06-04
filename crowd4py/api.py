@@ -34,7 +34,7 @@ class API:
         r = requests.get(url=API_ROOT + endpoint, params=params)
         return r.json() if r.status_code == 200 else None
 
-    def get_task(self, debug=True) -> Task:
+    def get_task(self, debug=False) -> Task:
         task_url = self.get_task_url()
         task_url = task_url.replace('https://', 'http://') if debug else task_url
         print(task_url)
@@ -56,7 +56,7 @@ class API:
         values = ans_data.values()
         keys = ans_data.keys()
         attached_keys = [helpers.attach_prefix(k) for k in keys]
-        post_data = dict(zip(attached_keys,values))
+        post_data = dict(zip(attached_keys, values))
         print(post_data)
         r = requests.post(post_url, data=post_data, auth=(USERID, PASSWORD), cookies=self.cookies)
         return r.status_code
