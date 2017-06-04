@@ -1,5 +1,4 @@
 import re
-import lxml
 
 
 def attach_prefix(string):
