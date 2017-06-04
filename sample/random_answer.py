@@ -37,9 +37,10 @@ def input_empty_at_none(ans_data):
         data.append(d)
     return dict(data)
 
+
 if __name__ == '__main__':
     api = crowd4py.API(user_info=user_info, project_name=project_name, relation_name=relation_name)
-    task = api.get_task()
+    task = api.get_task(debug=True)
 
     # マルチスレッドでポーリング
     # t = threading.Thread(target=poring_training_data(api))
@@ -47,10 +48,10 @@ if __name__ == '__main__':
     # t.start()
 
     ans_data = example_predict(task.data)
-    # post_data = input_empty_at_none(ans_data)
     if ans_data is None:
         api.request_answer(task.data['tid'])
         print("requested task answer ")
     else:
-        api.post_answer(task.post_url, ans_data)
+        print(task.post_url)
+        print(api.post_answer(task.post_url, ans_data))
         print("post answer ")

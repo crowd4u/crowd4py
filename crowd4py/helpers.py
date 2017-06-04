@@ -4,7 +4,7 @@ import lxml
 
 def attach_prefix(string):
     prefix = '_FACT1___'
-    pattern = '^_FACT1___'
+    pattern = '^_FACT1___|^_Fact1_|^_'
     match = re.search(pattern=pattern, string=string)
     return string if match else prefix + string
 
