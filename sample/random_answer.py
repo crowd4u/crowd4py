@@ -19,32 +19,40 @@ def example_predict(data):
     :param data:
     :return: ans_data
     """
-    data['is_same'] = "True"
+    if training_data is None:
+        return None
+    print(data['tid'])
+    for i, d in enumerate(training_data):
+        if data['tid'] == d['tid']:
+            data['is_same'] = d['is_same']
+            break
+    # if any(data['tid'] == d['tid'] for d in training_data):
+    #     data['is_same'] =
+    data['is_skip'] = True
     data['_input_value_names'] = ""
-    ans_data = data
-    return ans_data
+    return data
 
 
 def poring_training_data(api):
-    pass
+    json = api.relation_data()
+    global training_data
+    training_data = json['data']
 
 
 if __name__ == '__main__':
     api = crowd4py.API(user_info=user_info, project_name=project_name, relation_name=relation_name)
-    task = api.get_task(debug=True)
-
-    json = api.relation_data()
 
     # マルチスレッドでポーリング
-    # t = threading.Thread(target=poring_training_data(api))
-    # t.daemon = True
-    # t.start()
+    t = threading.Thread(target=poring_training_data(api))
+    t.daemon = True
+    t.start()
 
-    ans_data = example_predict(task.data)
-    if ans_data is None:
-        api.request_answer(task.data['tid'])
-        print("requested task answer ")
-    else:
-        print(task.post_url)
-        print(api.post_answer(task.post_url, ans_data))
-        print("post answer ")
+    for i in range(1000):
+        task = api.get_task(debug=True)
+        ans_data = example_predict(task.data)
+        if ans_data is None:
+            api.request_answer(task.data['tid'])
+            print("requested task answer ")
+        else:
+            print(api.post_answer(task.post_url, ans_data))
+            print("post answer ")
