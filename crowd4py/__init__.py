@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import configparser
 config = configparser.ConfigParser()
-config.read('../config.ini')
+config.read('config.ini')
 oahu = config['oahu']
 
 USERID = oahu.get('USERID', '')
