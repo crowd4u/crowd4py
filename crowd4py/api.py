@@ -45,10 +45,10 @@ class API:
     def request_answer(self, tid, increment_count=1):
         endpoint = "/api/request_task"
         params = {"project_name": self.project_name,
-                  "relation_name": self.relation_name,
+                  "relation_name": "_Priority_Current",
                   "tid": tid,
                   "increment_count": increment_count}
-        r = requests.get(url=API_ROOT + endpoint, auth=(USERID, PASSWORD), params=params)
+        r = requests.put(url=API_ROOT + endpoint, auth=(USERID, PASSWORD), params=params)
         return True if r.status_code == 200 else False
 
     def post_answer(self, post_url: str, ans_data: dict):
