@@ -8,7 +8,6 @@ class Task:
     """task object"""
 
     def __init__(self, xml_text):
-        xml_text = self.text_cleaning(xml_text)
         etroot = et.fromstring(text=xml_text)
         self.data = self.get_value_from_xml(etroot=etroot)
         self.post_url = self.get_post_url(etroot=etroot)
@@ -43,8 +42,5 @@ class Task:
         post_url = "http:" + etroot.find('post_url').text
         return post_url
 
-    @staticmethod
-    def text_cleaning(text: bytes)->bytes:
-        escaped_text = text.replace(b'&', b'&amp;')
-        return escaped_text
+
 
