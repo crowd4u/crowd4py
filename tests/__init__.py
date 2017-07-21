@@ -5,7 +5,8 @@ import configparser
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '../config.ini'))
+config.read(config_file)
 oahu = config['oahu']
 USERID = oahu.get('USERID', '')
 PASSWORD = oahu.get('PASSWOR', '')
