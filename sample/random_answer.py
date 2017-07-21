@@ -1,18 +1,10 @@
 # -*- coding: utf-8 -*-
+from __init__ import API_CONF, PROJECT_CONF
+
 import crowd4py
 import threading
 
-user_info = {
-    'requester': 818,
-    'from_app': 1,
-    '_machine_language': 'ja_JP',
-    'group_id': 83,
-    '_user_token': ''}
-
-project_name = 'CompTestV1'
-relation_name = 'Results'
 training_data = []
-
 
 def example_predict(data):
     """
@@ -46,7 +38,7 @@ def poring_training_data(api):
 
 
 if __name__ == '__main__':
-    api = crowd4py.API(user_info=user_info, project_name=project_name, relation_name=relation_name)
+    api = crowd4py.API(api_info=API_CONF, project_info=PROJECT_CONF)
 
     # マルチスレッドでポーリング
     # t = threading.Thread(target=poring_training_data(api))
