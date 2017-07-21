@@ -5,7 +5,7 @@ config.read('config.ini')
 oahu = config['oahu']
 
 USERID = oahu.get('USERID', '')
-PASSWORD = oahu.get('PASSWOR', '')
+PASSWORD = oahu.get('PASSWORD', '')
 API_ROOT = oahu.get('API_ROOT', 'http://crowd4u.org')
 USERINFO = {
     "requester": oahu.get('requester', '-1'),
