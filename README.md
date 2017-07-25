@@ -11,3 +11,9 @@ cd crowd4py
 python setup.py install
 python setup.py test
 ```
+
+## Usage
+```
+cd sample/
+# create config.ini
+```
