@@ -1,6 +1,12 @@
+# Worker examples
+- Human worker
+- Sample worker
+
+## Human worker
+The example of Human worker simulates behaviors for human. It depends on data of crowdsoursing workers.
+
 ## Sample worker
-Sample worker depend on answers of crowdsourcing workers.
-It answers by majority vote in matched answers.
+The exmample of sample worker answers by majority vote by answers data. Therefore it depends on data of crowdsourcing workers.
 
 ## Requirments
 - Install libraries by `pip install -r requirements.txt`
@@ -9,5 +15,5 @@ It answers by majority vote in matched answers.
 
 ## Demonstration
 ```bash
-python sample_worker.py
+python *_worker.py
 ```
