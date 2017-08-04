@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __init__ import API_CONF, PROJECT_CONF
+from sample import API_CONF, PROJECT_CONF
 
 import json
 import pandas as pd
