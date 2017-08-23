@@ -36,7 +36,7 @@ class API:
         self.project_name = project_name
         self.relation_name = relation_name
 
-    def relation_data(self):
+    def get_relation_data(self):
         """Sends a GET request.
         :return: :r.json:`Json` object
         :rtype: json Object or None
