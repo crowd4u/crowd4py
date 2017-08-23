@@ -45,8 +45,9 @@ class API:
         params = {"project_name": self.project_name,
                   "relation_name": self.relation_name}
 
-        r = requests.get(url=self.api_root + endpoint, params=params)
-        return r.json() if r.status_code == 200 else None
+        r = requests.get(url=self.api_root + endpoint, params=params, auth=(self.user_id, self.password))
+        j = r.json() if r.status_code == 200 else None
+        return j['data'] if j else None
 
     def get_task(self, debug=False) -> Task:
         task_url = self.get_task_url()
