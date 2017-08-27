@@ -20,10 +20,6 @@ class API():
         task_data = self.current_task.data.copy()
         answer_data = self.__create_answering_data(answer)
         task_data.update(answer_data)
-
-        print(self.current_task.post_url)
-        print(task_data)
-
         return self.api.post_answer(self.current_task.post_url, task_data)
 
     def __fetch(self, debug=True):
