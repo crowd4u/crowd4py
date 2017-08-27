@@ -36,7 +36,7 @@ class API:
         self.project_name = project_name
         self.relation_name = relation_name
 
-    def relation_data(self):
+    def get_relation_data(self):
         """Sends a GET request.
         :return: :r.json:`Json` object
         :rtype: json Object or None
@@ -45,8 +45,20 @@ class API:
         params = {"project_name": self.project_name,
                   "relation_name": self.relation_name}
 
-        r = requests.get(url=self.api_root + endpoint, params=params)
-        return r.json() if r.status_code == 200 else None
+        r = requests.get(url=self.api_root + endpoint, params=params, auth=(self.user_id, self.password))
+        j = r.json() if r.status_code == 200 else None
+        return j['data'] if j else None
+
+    @staticmethod
+    def get_relation_data(project_name, relation_name):
+        endpoint = "/api/relation_data"
+        api_root = "https://crowd4u.org/"
+        params = {"project_name": project_name,
+                  "relation_name": relation_name}
+
+        r = requests.get(url=api_root + endpoint, params=params)
+        j = r.json() if r.status_code == 200 else None
+        return j['data'] if j else None
 
     def get_task(self, debug=False) -> Task:
         task_url = self.get_task_url()
