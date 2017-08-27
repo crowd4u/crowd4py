@@ -8,16 +8,22 @@ class Conductor:
     def carryOut(self):
         pass
 
+    def carryOutStepwise(self):
+        pass
+
 class TrainingConductor(Conductor):
+    def carryOutStepwise(self, dev=True):
+        return self.worker.train(*(self.api.fetchTrainingData(debug=dev)))
+
     def carryOut(self, dev=True):
         for i in range(self.limit):
-            book1, book2, result = self.api.fetchTrainingData(debug=dev)
-            self.worker.train(book1, book2, result)
+            self.carryOutStepwise(dev)
 
 class OutputConductor(Conductor):
+    def carryOutStepwise(self, dev=True):
+        output = self.worker.output(*(self.api.fetchData(debug=dev)))
+        return self.api.send(output)
+
     def carryOut(self, dev=True):
         for i in range(self.limit):
-            book1, book2 = self.api.fetchData(debug=dev)
-            output = self.worker.output(book1, book2)
-            posted_data = self.api.send(output)
-            print(posted_data)
+            self.carryOutStepwise(dev)
