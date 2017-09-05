@@ -15,4 +15,5 @@ python setup.py test
 ```
 cd sample/
 # create config.ini
+python Phase1-algorithm-sample.py
 ```
