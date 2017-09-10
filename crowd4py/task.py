@@ -44,8 +44,8 @@ class Task:
 
     @staticmethod
     def get_post_url_from_html(etroot: lxml.etree) -> str:
-        attr = etroot.xpath('//form')[0].attrib
-        url = attr['action']
+        form = etroot.xpath('//form')[0]
+        url = form.attrib['action']
         return url
 
     @staticmethod

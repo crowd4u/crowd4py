@@ -70,17 +70,17 @@ class API:
         task = Task(xml_text=r.content)
         return task
 
-    def request_answer(self, tid, increment_count=1):
+    def request_answer(self, tid, increment_count=1, debug=False):
         endpoint = "/view/" + self.project_id + "/Priority_Request_Task"
         get_html = requests.get(url=self.api_root + endpoint, auth=(self.user_id, self.password))
         html = get_html.content
         etroot = et.fromstring(html)
-        Task.get_priority_from_html(etroot=etroot)
-        # params = {"project_name": self.project_name,
-        #           "relation_name": "_Priority_Current",
-        #           "tid": tid,
-        #           "increment_count": increment_count}
-        r = requests.put(url=self.api_root + endpoint, auth=(self.user_id, self.password), params=params)
+        post_url = Task.get_post_url_from_html(etroot=etroot)
+        params = Task.get_priority_params_from_html(etroot=etroot)
+        params['_FACT1___tid'] = tid
+        params['_input_value_names'] = ""
+        prefix = 'http:' if debug else 'https:'
+        r = requests.post(url=url, auth=(self.user_id, self.password), params=params)
         return True if r.status_code == 200 else False
 
     def post_answer(self, post_url: str, ans_data: dict):
