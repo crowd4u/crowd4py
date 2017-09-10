@@ -43,14 +43,15 @@ class Task:
         return post_url
 
     @staticmethod
+    def get_post_url_from_html(etroot: lxml.etree) -> str:
+        attr = etroot.xpath('//form')[0].attrib
+        url = attr['action']
+        return url
+
+    @staticmethod
     def get_priority_from_html(etroot: lxml.etree) -> dict:
         keys = []
         values = []
-        attr = etroot.xpath('//form')[0].attrib
-        url = attr['action']
-
-        keys.append('post_url')
-        values.append(url)
         for child in etroot.iter('input'):
             try:
                 keys.append(child.attrib['name'])

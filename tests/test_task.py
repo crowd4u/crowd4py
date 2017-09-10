@@ -27,12 +27,19 @@ class Crowd4pyTaskTests(unittest.TestCase):
         self.assertEqual(first=task_post_url, second=post_url)
         xml.close()
 
+    def test_get_post_url_from_html(self):
+        html = open("tests/request_priority.html", encoding='utf-8')
+        html_text = html.read()
+        etroot = et.fromstring(html_text.encode())
+        url = Task.get_post_url_from_html(etroot=etroot)
+        self.assertEqual(first=url, second='//crowd4u.org/event/comp_product?_task_id=2838815')
+        html.close()
+
     def test_get_priority_from_html(self):
         html = open("tests/request_priority.html", encoding='utf-8')
         html_text = html.read()
         etroot = et.fromstring(html_text.encode())
         d = Task.get_priority_from_html(etroot=etroot)
-        self.assertEqual(first=d['post_url'], second='//crowd4u.org/event/comp_product?_task_id=2838815')
         self.assertEqual(first=d['_FACT1___tid'], second="tid")
         self.assertEqual(first=d['tid'], second="")
         html.close()
