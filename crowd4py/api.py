@@ -29,10 +29,12 @@ class API:
         self.api_root = api_root
         self.user_info = user_info
 
+        project_id = project_info.get('ID', '')
         project_name = project_info.get('PROJECT_NAME', '')
         relation_name = project_info.get('RELATION_NAME', '')
 
         self.cookies = ""
+        self.project_id = project_id
         self.project_name = project_name
         self.relation_name = relation_name
 
@@ -69,11 +71,15 @@ class API:
         return task
 
     def request_answer(self, tid, increment_count=1):
-        endpoint = "/api/request_task"
-        params = {"project_name": self.project_name,
-                  "relation_name": "_Priority_Current",
-                  "tid": tid,
-                  "increment_count": increment_count}
+        endpoint = "/view/" + self.project_id + "/Priority_Request_Task"
+        get_html = requests.get(url=self.api_root + endpoint, auth=(self.user_id, self.password))
+        html = get_html.content
+        etroot = et.fromstring(html)
+        Task.get_priority_from_html(etroot=etroot)
+        # params = {"project_name": self.project_name,
+        #           "relation_name": "_Priority_Current",
+        #           "tid": tid,
+        #           "increment_count": increment_count}
         r = requests.put(url=self.api_root + endpoint, auth=(self.user_id, self.password), params=params)
         return True if r.status_code == 200 else False
 
