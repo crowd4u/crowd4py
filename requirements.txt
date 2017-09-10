@@ -1,3 +1,1 @@
-nose
-sphinx
 lxml==3.8.0
