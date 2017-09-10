@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import crowd4py
 
-class API():
+class BibAPI():
     """Wrapper of Crowd4py API
     Specific wrapper of detection bibliographic task
     """

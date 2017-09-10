@@ -6,7 +6,6 @@ class AlgorithmWorker(WorkerBase):
     The worker's algorithm is very simple
     That check the title of books and same title return true, otherwise false.
     """
-
     def train(self, book1, book2, result):
         """algorithm worker no uses training models
         So train show the data of bibliographics and result
@@ -21,7 +20,7 @@ class AlgorithmWorker(WorkerBase):
         """
         print(book1, book2, result)
 
-    def output(self, book1, book2):
+    def predict(self, book1, book2):
         """Checking the title of books and same title return true, otherwise false.
 
         Parameters
