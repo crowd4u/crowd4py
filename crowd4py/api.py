@@ -85,6 +85,7 @@ class API:
         return True if r.status_code == 200 else False
 
     def post_answer(self, post_url: str, ans_data: dict):
+        ans_data['_input_value_names'] = ""
         values = ans_data.values()
         keys = ans_data.keys()
         attached_keys = [helpers.attach_prefix(k) for k in keys]
