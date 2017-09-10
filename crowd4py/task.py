@@ -49,7 +49,7 @@ class Task:
         return url
 
     @staticmethod
-    def get_priority_from_html(etroot: lxml.etree) -> dict:
+    def get_priority_params_from_html(etroot: lxml.etree) -> dict:
         keys = []
         values = []
         for child in etroot.iter('input'):
