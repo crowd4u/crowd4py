@@ -80,6 +80,7 @@ class API:
         params['_FACT1___tid'] = tid
         params['_input_value_names'] = ""
         prefix = 'http:' if debug else 'https:'
+        url = prefix + post_url
         r = requests.post(url=url, auth=(self.user_id, self.password), params=params)
         return True if r.status_code == 200 else False
 
