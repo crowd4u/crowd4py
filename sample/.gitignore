@@ -4,3 +4,7 @@ config.ini
 # data filders
 data
 answers
+
+# data pkl
+*.pkl
+*.pkl.cmp

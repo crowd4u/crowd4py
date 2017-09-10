@@ -6,7 +6,7 @@ the worker examples are in workers directories.
 ## Algorithm Worker
 The worker works by simple human rulebase. When book's title is matched, the worker answer correct state.
 
-## Machine Learning Worker[WIP]
+## Machine Learning Worker
 The worker works by a machine learning model.
 
 ## Requirments
