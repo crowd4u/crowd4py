@@ -7,7 +7,6 @@ API crient for Crowd4u (http://crowd4u.org/ja/).
 ```
 git clone https://github.com/crowd4u/crowd4py.git
 cd crowd4py
-pip install -r requirements.txt
 python setup.py install
 python setup.py test
 ```
@@ -18,3 +17,6 @@ cd sample/
 # create config.ini
 python Phase1-algorithm-sample.py
 ```
+
+## Requirement
+Python >= 3.5
