@@ -1,6 +1,6 @@
 Crowd4py: Crowd4u for Python!
 ============================
-API crient for Crowd4u (http://crowd4u.org/ja/).
+API client for Crowd4u (http://crowd4u.org/ja/).
 
 ## Installation
 
