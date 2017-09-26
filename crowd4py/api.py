@@ -51,17 +51,6 @@ class API:
         j = r.json() if r.status_code == 200 else None
         return j['data'] if j else None
 
-    @staticmethod
-    def get_relation_data(project_name, relation_name):
-        endpoint = "/api/relation_data"
-        api_root = "https://crowd4u.org/"
-        params = {"project_name": project_name,
-                  "relation_name": relation_name}
-
-        r = requests.get(url=api_root + endpoint, params=params)
-        j = r.json() if r.status_code == 200 else None
-        return j['data'] if j else None
-
     def get_task(self, debug=False) -> Task:
         task_url = self.get_task_url()
         task_url = task_url.replace('https://', 'http://') if debug else task_url

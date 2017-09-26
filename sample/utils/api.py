@@ -35,10 +35,20 @@ class BibAPI():
             book1 and book2 is the bibliographic data that has title and isbn.
             result is the answer for the task.
         """
-        data = self.__fetch(debug=debug)
-        book1, book2 = self.__createBooksData(data)
-        result = self.__createResult(data)
-        return book1, book2, result
+
+        training_datasets = []
+        item_list = self.api.get_relation_data()
+
+        for item in item_list:
+            book1, book2 = self.__createBooksData(item)
+            result = self.__createResult(item)
+            training_datasets.append({
+                'book1': book1,
+                'book2': book2,
+                'result': result
+            })
+
+        return training_datasets
 
     def fetchData(self, debug=True):
         """Fetch data from crowd4u api in answering term
