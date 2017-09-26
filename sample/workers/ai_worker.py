@@ -73,4 +73,5 @@ class AIWorker(WorkerBase):
     def __create_target(self, result):
         """Create boolean target data by result object
         """
-        return int(result["is_same"])
+
+        return int(result["is_same"] == "True")
