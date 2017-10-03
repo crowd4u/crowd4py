@@ -38,16 +38,25 @@ class API:
         self.project_name = project_name
         self.relation_name = relation_name
 
-    def get_relation_data(self):
+    def get_relation_data(self=None, project_name=None, relation_name=None):
         """Sends a GET request.
         :return: :r.json:`Json` object
         :rtype: json Object or None
         """
-        endpoint = "/api/relation_data"
-        params = {"project_name": self.project_name,
-                  "relation_name": self.relation_name}
 
-        r = requests.get(url=self.api_root + endpoint, params=params, auth=(self.user_id, self.password))
+        endpoint = "/api/relation_data"		
+
+        if self is None:
+            api_root = "https://crowd4u.org/"		
+            params = {"project_name": project_name,		
+                      "relation_name": relation_name}		
+            r = requests.get(url=api_root + endpoint, params=params)
+
+        else:
+            params = {"project_name": self.project_name,
+                    "relation_name": self.relation_name}
+            r = requests.get(url=self.api_root + endpoint, params=params, auth=(self.user_id, self.password))
+
         j = r.json() if r.status_code == 200 else None
         return j['data'] if j else None
 
