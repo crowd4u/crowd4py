@@ -17,12 +17,12 @@ The worker works by a machine learning model by SVM.
 
 ### Learning phase demonstration
 ```bash
-python Phase1-algorithm-sample.py
+python 01_Phase1-algorithm-sample.py
 ```
 
 ### Answering phase demonstration
 ```bash
-python Phase2-algorithm-sample.py
+python 01_Phase2-algorithm-sample.py
 ```
 
 # Create Worker
