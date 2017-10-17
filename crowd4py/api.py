@@ -44,12 +44,12 @@ class API:
         :rtype: json Object or None
         """
 
-        endpoint = "/api/relation_data"		
+        endpoint = "/api/relation_data"
 
         if self is None:
-            api_root = "https://crowd4u.org/"		
-            params = {"project_name": project_name,		
-                      "relation_name": relation_name}		
+            api_root = "https://crowd4u.org/"
+            params = {"project_name": project_name,
+                      "relation_name": relation_name}
             r = requests.get(url=api_root + endpoint, params=params)
 
         else:
@@ -57,6 +57,7 @@ class API:
                     "relation_name": self.relation_name}
             r = requests.get(url=self.api_root + endpoint, params=params, auth=(self.user_id, self.password))
 
+        r.encoding = 'utf-8'
         j = r.json() if r.status_code == 200 else None
         return j['data'] if j else None
 
